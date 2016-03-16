@@ -1,0 +1,9 @@
+{
+  "name": "In the freshhood",
+  "short_name": "Freshhood",
+  "lang": "en-JP",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#00897B",
+  "background_color": "#00897B"
+}
