@@ -36,7 +36,10 @@ function watchBundles() {
   let watch = null;
   for (let bundleName in bundles) {
     watch = watchify(bundles[bundleName].bundle);
-    watch.on('update', buildBundle.bind(this, bundleName));
+    watch.on('update', () => {
+      console.log(`updating bundle ${bundleName}`);
+      buildBundle(bundleName);
+    });
   }
 }
 

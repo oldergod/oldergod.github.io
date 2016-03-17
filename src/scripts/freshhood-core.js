@@ -1,5 +1,5 @@
 'use strict';
 
-import AppController  from './controller/AppController';
+import AppController  from './controllers/AppController';
 
 new AppController();
