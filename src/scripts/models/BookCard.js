@@ -1,7 +1,7 @@
 'use strict';
 
 export default class BookCard {
-  constructor({id, title = 'title', description = 'description'}) {
+  constructor(id, title = 'title', description = 'description', imageUrl) {
     if (id == null) {
       throw 'missing id';
     }
@@ -9,22 +9,23 @@ export default class BookCard {
     this.id = id;
     this.title = title;
     this.description = description;
+    this.imageUrl = imageUrl;
   }
-
-  get imageUrl() {
-    return `images/${this.id}.png`;
-  }
+  //
+  // get imageUrl() {
+  //   return `images/${this.id}.png`;
+  // }
 
   get template() {
     return [
       `<div class="card_inner">`,
-        `<div class="card_title"`,
+        `<div class="card_title">`,
           `<h1>${this.title}</h1>`,
         `</div>`,
-        `<div class="card_image"`,
-          `<img src="${this.imageUrl}" />`,
-        `</div>`,
-        `<div class="card_description"`,
+        `<figure class="card_figure">`,
+          `<img class="card_image" src="${this.imageUrl}" />`,
+        `</figure>`,
+        `<div class="card_description">`,
           `<p>${this.description}</p>`,
         `</div>`,
       `</div>`
@@ -33,9 +34,9 @@ export default class BookCard {
 
   render() {
     this.element = document.createElement('section');
-    this.element.classList.add('card', `card-${this.id}`);
+    this.element.classList.add('book-card', `card-${this.id}`);
     this.element.innerHTML = this.template;
-    document.body.appendChild(this.element);
+    document.querySelector('.books-container').appendChild(this.element);
     console.log(this);
   }
 }

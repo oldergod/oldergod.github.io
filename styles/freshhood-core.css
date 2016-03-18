@@ -1,14 +1,15 @@
 /*! (c) 2016 Benoit Quenaudon (MIT) */
 :root {
   --teal-600: #00897B;
-  --red: #F44336;
+  --red-500: #F44336;
 }
 
 * {
   box-sizing: border-box;
 }
 
-body, html {
+body,
+html {
   padding: 0;
   margin: 0;
   color: #444;
@@ -43,7 +44,7 @@ body, html {
 }
 
 .side-nav__visible:before {
-  opacity: .7;
+  opacity: 0.7;
 }
 
 .header {
@@ -72,24 +73,26 @@ body, html {
 }
 
 .header_toggle-side-nav {
-  background: url(../images/ic_menu_24px.svg) center center no-repeat;
+  background: url("../images/ic_menu_24px.svg") center center no-repeat;
   width: 24px;
   height: 24px;
   margin-right: 16px;
   text-indent: -30000px;
   overflow: hidden;
-  opacity: .54;
+  opacity: 0.54;
   transition: opacity 333ms cubic-bezier(0, 0, 0.21, 1);
   border: none;
   outline: 0;
   will-change: opacity;
 }
 
-.header_toggle-side-nav:focus, .header_toggle-side-nav:hover {
+.header_toggle-side-nav:focus,
+.header_toggle-side-nav:hover {
   opacity: 1;
 }
 
-.dialog-view, .side-nav:before {
+.dialog-view,
+.side-nav:before {
   will-change: opacity;
   width: 100%;
 }
@@ -147,9 +150,56 @@ body, html {
 }
 
 .side-nav_nav-to-books {
-  background: url(../images/book_open_page_24px.svg) 16px 12px no-repeat;
+  background: url("../images/book_open_page_24px.svg") 16px 12px no-repeat;
 }
 
 .side-nav_nav-to-portfolio {
-  background: url(../images/github_24px.svg) 16px 12px no-repeat;
+  background: url("../images/github_24px.svg") 16px 12px no-repeat;
+}
+
+.main {
+  padding-top: 56px;
+}
+
+.book-list {
+  overflow: scroll;
+}
+
+.card_figure {
+  margin: 0;
+  padding: 0;
+}
+
+.card_image {
+  left: 0;
+  top: 0;
+  width: 30vw;
+  opacity: 1;
+  max-height: 30vh;
+  position: absolute;
+}
+
+.card_inner {
+  position: relative;
+}
+
+.books-container {
+  display: none;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.book-card {
+  flex-basis: 130px;
+  flex-grow: 1;
+}
+
+.books-container__visible {
+  display: flex;
+}
+
+.card_title, .card_description {
+  padding-left: 32vw;
 }
