@@ -19,14 +19,14 @@ export default class BookCard {
   get template() {
     return [
       `<div class="card_inner">`,
-        `<div class="card_title">`,
-          `<h1>${this.title}</h1>`,
+        `<div class="card_title-inner">`,
+          `<h1 class="card_title">${this.title}</h1>`,
         `</div>`,
         `<figure class="card_figure">`,
           `<img class="card_image" src="${this.imageUrl}" />`,
         `</figure>`,
-        `<div class="card_description">`,
-          `<p>${this.description}</p>`,
+        `<div class="card_description-inner">`,
+          `<p class="card_description">${this.description}</p>`,
         `</div>`,
       `</div>`
     ].join('');

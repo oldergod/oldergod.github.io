@@ -35,6 +35,18 @@ export default class SideNavController extends Controller {
       author: 'Alexande Jardin',
       image_url: 'http://ecx.images-amazon.com/images/I/515raxjXnqL._SX307_BO1,204,203,200_.jpg',
       description: `Tandis que mon père s'endort peu à peu contre moi, je lui parle une dernière fois : Plus tard, tu ne pourras pas vivre avec le secret des Jardin. Il te tuera... Tu feras un livre, Le Nain jaune, pour le camoufler. Au même âge que toi, j'en ferai un, Des gens très bien, pour l'exposer. Et je vivrai la dernière partie de ta vie... La mienne. Dors mon petit papa, dors... Ce livre aurait pu s'appeler "fini de rire". C'est le carnet de bord de ma lente lucidité.`
+    }, {
+      id: 4,
+      title: 'The Autobiography of Benjamin Franklin',
+      author: 'Benjamin Franklin',
+      image_url: 'http://ecx.images-amazon.com/images/I/51MxjDM80-L._SX310_BO1,204,203,200_.jpg',
+      description: `Blessed with enormous talents and the energy and ambition to go with them, Franklin was a statesman, author, inventor, printer, and scientist.`
+    }, {
+      id: 5,
+      title: 'Security Analysis: Principles and Techniques',
+      author: 'Benjamin Graham',
+      image_url: 'http://ecx.images-amazon.com/images/I/51yJzPq3npL._SX309_BO1,204,203,200_.jpg',
+      description: `Benjamin Graham's revolutionary theories have influenced and inspired investors for nearly 70 years. First published in 1934, his Security Analysis is still considered to be the value investing bible for investors of every ilk. Yet, it is the second edition of that book, published in 1940 and long since out of print, that many experts--including Graham protégé Warren Buffet--consider to be the definitive edition. This facsimile reproduction of that seminal work makes available to investors, once again, the original thinking of "this century's (and perhaps history's) most important thinker on applied portfolio investment."`
     }];
   }
 

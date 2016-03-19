@@ -137,10 +137,9 @@ html {
   background: url("../images/github_24px.svg") 16px 12px no-repeat;
 }
 .main {
-  padding-top: 56px;
-}
-.book-list {
-  overflow: scroll;
+  margin-top: 56px;
+  overflow: auto;
+  height: 100vh;
 }
 .card_figure {
   margin: 0;
@@ -149,9 +148,9 @@ html {
 .card_image {
   left: 0;
   top: 0;
-  width: 30vw;
+  width: 124px;
   opacity: 1;
-  max-height: 30vh;
+  max-height: 190px;
   position: absolute;
 }
 .card_inner {
@@ -165,12 +164,26 @@ html {
   align-items: center;
 }
 .book-card {
-  flex-basis: 130px;
+  flex-basis: 190px;
   flex-grow: 1;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.19), 0 8px 17px rgba(0, 0, 0, 0.2);
+  margin: 8px;
+  border-radius: 5px;
+  overflow: hidden;
 }
 .books-container__visible {
   display: flex;
 }
-.card_title, .card_description {
-  padding-left: 32vw;
+.card_title-inner,
+.card_description-inner {
+  padding-left: 130px;
+  text-align: justify;
+  padding-right: 4px;
+}
+.card_title {
+  padding: 6px 0;
+  margin: 0;
+}
+.card_description {
+  margin: 0;
 }
