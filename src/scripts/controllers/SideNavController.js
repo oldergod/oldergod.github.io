@@ -1,6 +1,7 @@
 'use strict';
 
 import BookCard from '../models/BookCard';
+import Button from '../views/Button';
 import Controller from './Controller';
 
 export default class SideNavController extends Controller {
@@ -12,10 +13,10 @@ export default class SideNavController extends Controller {
     this.sideNav.addEventListener('click', this.closeSideNav.bind(this));
     this.sideNavContent.addEventListener('click', (e) => e.stopPropagation());
 
-    this.navToBooksButton = document.querySelector('.side-nav_nav-to-books');
-    this.navToBooksButton.addEventListener('click', this.navToBooks.bind(this));
-    this.navToPortfolioButton = document.querySelector('.side-nav_nav-to-portfolio');
-    this.navToPortfolioButton.addEventListener('click', this.navToPortfolio.bind(this));
+    this.navToBooksButton = new Button(document.querySelector('.side-nav_nav-to-books'));
+    this.navToBooksButton.element.addEventListener('click', this.navToBooks.bind(this));
+    this.navToPortfolioButton = new Button(document.querySelector('.side-nav_nav-to-portfolio'));
+    this.navToPortfolioButton.element.addEventListener('click', this.navToPortfolio.bind(this));
 
     this.books = [{
       id: 1,
