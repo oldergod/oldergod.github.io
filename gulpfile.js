@@ -17,6 +17,7 @@ const stylesSourcePath = './src/styles/**/*.scss';
 const scriptsSourcePath = './src/scripts/**/*.js';
 const htmlPath = './src/**/*.html';
 const imagesPath = './src/images/**/*';
+const thirdPartyPath = './src/third_party/**/*';
 
 const bundles = {
   'freshhood-core': {
@@ -64,7 +65,7 @@ function buildBundle(bundleName) {
   })).pipe(gulp.dest('./scripts'));
 }
 
-gulp.task('clean', done => del(['*.html', './styles', './scripts', './images'], done));
+gulp.task('clean', done => del(['*.html', './styles', './scripts', './images', '/third_party'], done));
 
 gulp.task('styles', () => {
   return gulp.src(stylesSourcePath)
@@ -103,13 +104,18 @@ gulp.task('html', () => {
     .pipe(gulp.dest('.'));
 });
 
+gulp.task('third_party', () => {
+  return gulp.src(thirdPartyPath)
+    .pipe(gulp.dest('./third_party'));
+});
+
 (() => {
   for (let bundleName in bundles) {
     bundles[bundleName].bundle = createBundle(bundles[bundleName].url);
   }
 })();
 
-var allTasks = ['styles', 'scripts', 'images', 'html'];
+var allTasks = ['styles', 'scripts', 'images', 'html', 'third_party'];
 
 gulp.task('default', cb => {
   return runSequence('clean', allTasks, 'watch', cb);
