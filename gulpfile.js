@@ -24,6 +24,16 @@ const bundles = {
     url: './src/scripts/freshhood-core.js',
     name: 'freshhood-core.js',
     bundle: null
+  },
+  'freshhood-books': {
+    url: './src/scripts/freshhood-books.js',
+    name: 'freshhood-books.js',
+    bundle: null
+  },
+  'freshhood-portfolio': {
+    url: './src/scripts/freshhood-portfolio.js',
+    name: 'freshhood-portfolio.js',
+    bundle: null
   }
 };
 

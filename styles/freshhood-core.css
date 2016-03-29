@@ -1,2 +1,295 @@
 /*! (c) 2016 Benoit Quenaudon (MIT) */
-:root{--teal-600:#00897B;--red-500:#F44336}*{box-sizing:border-box}body,html{padding:0;margin:0;color:#444;width:100%;height:100%;overflow:hidden;font-family:'Roboto';font-weight:400}button{font-family:'Roboto'}@font-face{font-family:'Roboto';font-style:normal;font-weight:400;src:local("Roboto"),local("Roboto-Regular"),url(/third_party/Roboto/Roboto-400.woff) format("woff")}@font-face{font-family:'Roboto';font-style:normal;font-weight:500;src:local("Roboto Medium"),local("Roboto-Medium"),url(/third_party/Roboto/Roboto-500.woff) format("woff")}.side-nav{z-index:200;width:100%;height:100%;position:fixed;pointer-events:none;top:0;left:0;overflow:hidden}.side-nav:before{height:100%;background:#000;opacity:0;display:block;position:absolute;transition:opacity 233ms cubic-bezier(0, 0, 0.21, 1);content:''}.side-nav__visible{pointer-events:auto}.side-nav__visible:before{opacity:0.7}.header{width:100%;height:56px;color:#FFF;background:var(--teal-600);font-size:20px;box-shadow:0 4px 5px 0 rgba(0,0,0,0.14),0 2px 9px 1px rgba(0,0,0,0.12),0 4px 2px -2px rgba(0,0,0,0.2);padding:16px 16px 0;display:flex;flex-direction:row;flex-wrap:nowrap;justify-content:flex-start;align-items:stretch;align-content:center;z-index:2;position:fixed}.header_title{font-weight:400;font-size:20px;margin:0;flex:1}.header_toggle-side-nav{background:url("/images/ic_menu_24px.svg") center center no-repeat;width:24px;height:24px;margin-right:16px;text-indent:-30000px;overflow:hidden;opacity:0.54;transition:opacity 333ms cubic-bezier(0, 0, 0.21, 1);border:none;border-radius:50%;outline:0;will-change:opacity}.header_toggle-side-nav:focus,.header_toggle-side-nav:hover{opacity:1}.dialog-view,.side-nav:before{will-change:opacity;width:100%}.side-nav_content{background:#FAFAFA;width:304px;height:100%;outline:0;box-shadow:0 0 4px rgba(0,0,0,0.14),0 4px 8px rgba(0,0,0,0.28);transform:translateX(-102%);overflow:hidden;will-change:transform;transition:transform 0.233s cubic-bezier(0, 0, 0.21, 1)}.side-nav_content_visible{transform:translateX(0px)}.side-nav_header{background:var(--teal-600);background-size:cover;width:100%;height:130px;position:relative}.side-nav_title{font-size:16px;line-height:1;color:#FFF;position:absolute;bottom:8px;left:16px;height:16px;font-weight:500}.side-nav_body{padding-top:8px}.ripple-container{display:block;position:absolute;height:100%;width:100%;left:0;top:0;z-index:-1;overflow:hidden}.ripple-effect{position:relative}.ripple{height:50px;left:0;opacity:0;pointer-events:none;position:absolute;top:0;transform:translate(-50%, -50%);width:50px;background:#000;border-radius:50%;overflow:hidden}.is-animating{transition:transform 0.3s cubic-bezier(0, 0, 0.2, 1),width 0.3s cubic-bezier(0, 0, 0.2, 1),height 0.3s cubic-bezier(0, 0, 0.2, 1),opacity 0.6s cubic-bezier(0, 0, 0.2, 1)}.is-visible{opacity:0.3}.side-nav_link-button{font-size:14px;outline:0;height:48px;padding-left:72px;width:100%;text-align:left;display:block;border:none;color:rgba(0,0,0,0.87);cursor:pointer}.side-nav_nav-to-books{background:url("/images/book_open_page_24px.svg") 16px 12px no-repeat}.side-nav_nav-to-portfolio{background:url("/images/github_24px.svg") 16px 12px no-repeat}.main{margin-top:56px;overflow:auto;height:90vh}.card_figure{margin:0;padding:0}.card_image{left:0;top:0;width:124px;opacity:1;max-height:190px;position:absolute}.card_inner{position:relative}.books-container{display:none;flex-direction:column;flex-wrap:wrap;justify-content:flex-start;align-items:center}.book-card{flex-basis:190px;flex-grow:1;box-shadow:0 6px 20px rgba(0,0,0,0.19),0 8px 17px rgba(0,0,0,0.2);margin:8px;border-radius:45px;overflow:hidden}.books-container__visible{display:flex}.card_title-inner,.card_description-inner{padding-left:130px;text-align:justify;padding-right:4px}.card_title{padding:6px 0;margin:0}.card_description{margin:0}
+:root {
+  --teal-600: #00897B;
+  --red-500: #F44336;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body,
+html {
+  padding: 0;
+  margin: 0;
+  color: #444;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: 'Roboto';
+  font-weight: 400;
+}
+
+.loader {
+  left: 50%;
+  top: 50%;
+  position: fixed;
+  transform: translate(-50%, -50%);
+  z-index: 400;
+  background: green;
+  width: 30px;
+  height: 30px;
+}
+
+.hidden {
+  display: none;
+}
+
+button {
+  font-family: 'Roboto';
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: local("Roboto"), local("Roboto-Regular"), url("/third_party/Roboto/Roboto-400.woff") format("woff");
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  src: local("Roboto Medium"), local("Roboto-Medium"), url("/third_party/Roboto/Roboto-500.woff") format("woff");
+}
+
+.side-nav {
+  z-index: 200;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  pointer-events: none;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+}
+
+.side-nav:before {
+  height: 100%;
+  background: #000;
+  opacity: 0;
+  display: block;
+  position: absolute;
+  transition: opacity 233ms cubic-bezier(0, 0, 0.21, 1);
+  content: '';
+}
+
+.side-nav__visible {
+  pointer-events: auto;
+}
+
+.side-nav__visible:before {
+  opacity: 0.7;
+}
+
+.header {
+  width: 100%;
+  height: 56px;
+  color: #FFF;
+  background: var(--teal-600);
+  font-size: 20px;
+  box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 2px 9px 1px rgba(0, 0, 0, 0.12), 0 4px 2px -2px rgba(0, 0, 0, 0.2);
+  padding: 16px 16px 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: stretch;
+  align-content: center;
+  z-index: 2;
+  position: fixed;
+}
+
+.header_title {
+  font-weight: 400;
+  font-size: 20px;
+  margin: 0;
+  flex: 1;
+}
+
+.header_toggle-side-nav {
+  background: url("/images/ic_menu_24px.svg") center center no-repeat;
+  width: 24px;
+  height: 24px;
+  margin-right: 16px;
+  text-indent: -30000px;
+  overflow: hidden;
+  opacity: 0.54;
+  transition: opacity 333ms cubic-bezier(0, 0, 0.21, 1);
+  border: none;
+  border-radius: 50%;
+  outline: 0;
+  will-change: opacity;
+}
+
+.header_toggle-side-nav:focus,
+.header_toggle-side-nav:hover {
+  opacity: 1;
+}
+
+.dialog-view,
+.side-nav:before {
+  will-change: opacity;
+  width: 100%;
+}
+
+.side-nav_content {
+  background: #FAFAFA;
+  width: 304px;
+  height: 100%;
+  outline: 0;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(0, 0, 0, 0.28);
+  transform: translateX(-102%);
+  overflow: hidden;
+  will-change: transform;
+}
+
+.save-nav_content_animatable {
+  transition: transform 0.233s cubic-bezier(0, 0, 0.21, 1);
+}
+
+.side-nav_content_visible {
+  transform: translateX(0px);
+}
+
+.side-nav_header {
+  background: var(--teal-600);
+  background-size: cover;
+  width: 100%;
+  height: 130px;
+  position: relative;
+}
+
+.side-nav_title {
+  font-size: 16px;
+  line-height: 1;
+  color: #FFF;
+  position: absolute;
+  bottom: 8px;
+  left: 16px;
+  height: 16px;
+  font-weight: 500;
+}
+
+.side-nav_body {
+  padding-top: 8px;
+}
+
+.ripple-container {
+  display: block;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.ripple-effect {
+  position: relative;
+}
+
+.ripple {
+  height: 50px;
+  left: 0;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  transform: translate(-50%, -50%);
+  width: 50px;
+  background: black;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.is-animating {
+  transition: transform 0.3s cubic-bezier(0, 0, 0.2, 1), width 0.3s cubic-bezier(0, 0, 0.2, 1), height 0.3s cubic-bezier(0, 0, 0.2, 1), opacity 0.6s cubic-bezier(0, 0, 0.2, 1);
+}
+
+.is-visible {
+  opacity: 0.3;
+}
+
+.side-nav_link-button {
+  font-size: 14px;
+  outline: 0;
+  height: 48px;
+  padding-left: 72px;
+  width: 100%;
+  text-align: left;
+  display: block;
+  border: none;
+  color: rgba(0, 0, 0, 0.87);
+  cursor: pointer;
+}
+
+.side-nav_nav-to-books {
+  background: url("/images/book_open_page_24px.svg") 16px 12px no-repeat;
+}
+
+.side-nav_nav-to-portfolio {
+  background: url("/images/github_24px.svg") 16px 12px no-repeat;
+}
+
+.main {
+  margin-top: 56px;
+  overflow: auto;
+  height: 90vh;
+}
+
+.card_figure {
+  margin: 0;
+  padding: 0;
+}
+
+.card_image {
+  left: 0;
+  top: 0;
+  width: 124px;
+  opacity: 1;
+  max-height: 190px;
+  position: absolute;
+}
+
+.card_inner {
+  position: relative;
+}
+
+.books-container {
+  display: none;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.book-card {
+  flex-basis: 190px;
+  flex-grow: 1;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.19), 0 8px 17px rgba(0, 0, 0, 0.2);
+  margin: 8px;
+  border-radius: 45px;
+  overflow: hidden;
+}
+
+.books-container__visible {
+  display: flex;
+}
+
+.card_description-inner,
+.card_title-inner {
+  padding-left: 130px;
+  text-align: justify;
+  padding-right: 4px;
+}
+
+.card_title {
+  padding: 6px 0;
+  margin: 0;
+}
+
+.card_description {
+  margin: 0;
+}
