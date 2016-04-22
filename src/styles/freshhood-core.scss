@@ -16,6 +16,19 @@ html {
   font-family: 'Roboto';
   font-weight: 400;
 }
+.loader {
+  left: 50%;
+  top: 50%;
+  position: fixed;
+  transform: translate(-50%,-50%);
+  z-index: 400;
+  background: green;
+  width: 30px;
+  height: 30px;
+}
+.hidden {
+  display: none;
+}
 button {
   font-family: 'Roboto';
 }
@@ -23,14 +36,13 @@ button {
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 400;
-  src: local('Roboto'), local('Roboto-Regular'), url(/third_party/Roboto/Roboto-400.woff) format('woff');
+  src: local('Roboto'), local('Roboto-Regular'), url("/third_party/Roboto/Roboto-400.woff") format('woff');
 }
-
 @font-face {
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 500;
-  src: local('Roboto Medium'), local('Roboto-Medium'), url(/third_party/Roboto/Roboto-500.woff) format('woff');
+  src: local('Roboto Medium'), local('Roboto-Medium'), url("/third_party/Roboto/Roboto-500.woff") format('woff');
 }
 .side-nav {
   z-index: 200;
@@ -112,6 +124,8 @@ button {
   transform: translateX(-102%);
   overflow: hidden;
   will-change: transform;
+}
+.save-nav_content_animatable {
   transition: transform 0.233s cubic-bezier(0, 0, 0.21, 1);
 }
 .side-nav_content_visible {
@@ -225,8 +239,8 @@ button {
 .books-container__visible {
   display: flex;
 }
-.card_title-inner,
-.card_description-inner {
+.card_description-inner,
+.card_title-inner {
   padding-left: 130px;
   text-align: justify;
   padding-right: 4px;

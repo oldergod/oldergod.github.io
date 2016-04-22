@@ -17,7 +17,7 @@ export default class Controller {
   loadCSS(url) {
     return fetch(url).then(response => {
       if (response.status === 200) {
-        response.body().then(body => {
+        response.text().then(body => {
           var style = document.createElement('style');
           style.textContent = body;
           document.head.appendChild(style);

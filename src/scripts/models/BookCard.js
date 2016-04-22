@@ -37,6 +37,9 @@ export default class BookCard {
     this.element.classList.add('book-card', `card-${this.id}`);
     this.element.innerHTML = this.template;
     document.querySelector('.books-container').appendChild(this.element);
-    console.log(this);
+  }
+
+  destroy() {
+    this.element.remove();
   }
 }

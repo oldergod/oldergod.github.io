@@ -1,23 +1,15 @@
 'use strict';
 
 import BookCard from '../models/BookCard';
-import Button from '../views/Button';
 import Controller from './Controller';
+import RouterInstance from '../libs/Router';
 
-export default class SideNavController extends Controller {
+export default class BooksController extends Controller {
   constructor() {
     super()
-    this.sideNav = document.querySelector('.side-nav');
-    this.sideNavContent = this.sideNav.querySelector('.side-nav_content');
 
-    this.sideNav.addEventListener('click', this.closeSideNav.bind(this));
-    this.sideNavContent.addEventListener('click', (e) => e.stopPropagation());
-
-    this.navToBooksButton = new Button(document.querySelector('.side-nav_nav-to-books'));
-    this.navToBooksButton.element.addEventListener('click', this.navToBooks.bind(this));
-    this.navToPortfolioButton = new Button(document.querySelector('.side-nav_nav-to-portfolio'));
-    this.navToPortfolioButton.element.addEventListener('click', this.navToPortfolio.bind(this));
-
+    this.container = document.querySelector('.books-container');
+    //TODO (benoit) get books from some json
     this.books = [{
       id: 1,
       title: 'Wizard: The Life And Times of Nikola Tesla',
@@ -49,43 +41,41 @@ export default class SideNavController extends Controller {
       image_url: 'http://ecx.images-amazon.com/images/I/51yJzPq3npL._SX309_BO1,204,203,200_.jpg',
       description: `Benjamin Graham's revolutionary theories have influenced and inspired investors for nearly 70 years. First published in 1934, his Security Analysis is still considered to be the value investing bible for investors of every ilk. Yet, it is the second edition of that book, published in 1940 and long since out of print, that many experts--including Graham protégé Warren Buffet--consider to be the definitive edition. This facsimile reproduction of that seminal work makes available to investors, once again, the original thinking of "this century's (and perhaps history's) most important thinker on applied portfolio investment."`
     }];
-  }
+    this.renderedBooks = [];
+    // show them - not here ? or use some requestIdleCallback ?
+    // eventlistener <= expand cards, links etc.
 
-  toggleSideNav() {
-    if (this.sideNav.classList.contains('side-nav__visible')) {
-      this.closeSideNav();
-    } else {
-      this.showSideNav();
-    }
-  }
+    this.loadCSS('/styles/freshhood-books.css').then(() => {
+      // this.view.classList.remove('hidden');
 
-  closeSideNav() {
-    requestAnimationFrame(() => {
-      this.sideNav.classList.remove('side-nav__visible');
-      this.sideNavContent.classList.remove('side-nav_content_visible');
+      RouterInstance().then((router) => {
+        router.add('books',
+          () => this.show(),
+          () => this.hide(),
+          () => console.log('update'));
+      });
     });
   }
 
-  showSideNav() {
-    requestAnimationFrame(() => {
-      this.sideNav.classList.add('side-nav__visible');
-      this.sideNavContent.classList.add('side-nav_content_visible');
-    });
+  show() {
+    this.container.classList.add('books-container__visible');
+    this.fill();
   }
-
-  navToBooks() {
-    this.closeSideNav();
-    // TODO(benoit) so wrong. lets get some adequate MVC...
-
-    document.querySelector('.books-container').classList.add('books-container__visible');
-
-    this.books.forEach(book => {
-      let bookCard = new BookCard(book.id, book.title, book.description, book.image_url);
+  fill() {
+    this.renderedBooks = this.books.map(book => {
+      const bookCard = new BookCard(book.id, book.title, book.description, book.image_url);
       bookCard.render();
+      return bookCard;
     });
   }
-
-  navToPortfolio() {
-    // TODO(benoit)
+  hide() {
+    this.container.classList.remove('books-container__visible');
+    this.destroyBookCards();
+  }
+  update() {
+    console.log('update')
+  }
+  destroyBookCards() {
+    this.renderedBooks.forEach(bookCard => bookCard.destroy());
   }
 }
