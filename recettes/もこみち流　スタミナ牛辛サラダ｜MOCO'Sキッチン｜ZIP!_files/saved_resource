@@ -1,0 +1,6 @@
+			var width = 480;
+			var height = 270;
+			var obj = "<img src='http://cu.ntv.co.jp/wp-content/plugins/ntv-api/img/non_movie.jpg'>";
+			document.getElementById('movie').innerHTML = obj;
+
+		
